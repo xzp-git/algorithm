@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename Java project &apos;二叉树&apos; to &apos;algorithm-basic&apos;&#x0D;&#x0A;- Original element: &apos;二叉树&apos;&#x0D;&#x0A;- Renamed element: &apos;二叉树&apos;&#x0D;&#x0A;- Update references to refactored element" description="Rename Java project &apos;二叉树&apos;" flags="7" id="org.eclipse.jdt.ui.rename.java.project" input="=二叉树" name="algorithm-basic" references="true" stamp="1668944790936" version="1.0"/>
+</session>

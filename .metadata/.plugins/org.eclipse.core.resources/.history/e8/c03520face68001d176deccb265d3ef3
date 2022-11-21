@@ -1,0 +1,22 @@
+package 二叉树;
+
+public class Code02_IsBST {
+	
+	public static class Info {
+		public boolean isBST;
+		public int max;
+		public int min;
+		
+		public Info(boolean i, int ma, int mi) {
+			isBST = i;
+			max = ma;
+			min = mi;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+		System.out.println("test111");
+	}
+
+}
