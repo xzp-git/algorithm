@@ -1,0 +1,66 @@
+package 二叉树;
+
+public class Code04_IsFull {
+	
+	public static class Node {
+		public int value;
+		public Node left;
+		public Node right;
+
+		public Node(int data) {
+			this.value = data;
+		}
+	}
+	/**
+	 * 
+	 * 判断一棵二叉树x是否是 满二叉树
+	 * 
+	 * 	定义
+	 * 	高度是h的满二叉树, 节点数 是 2^h - 1
+	 * 
+	 * 解题 
+	 * 	把节点数 和 高度 都收集上来 根据定义看看是否相等
+	 * 
+	 * 	根据二叉树递归套路 向左树 右树 收集信息
+	 * 	1. 高度     2. 节点数
+	 * 
+	 */
+	
+	public static class Info{
+		public int height;
+		public int size;
+		
+		public Info(int h, int s) {
+			height = h;
+			size = s;
+		}
+	}
+	
+	public static boolean isFull(Node head) {
+		if(head == null) {
+			return true;
+		}
+		
+	}
+	
+	public static Info process(Node x) {
+		if(x == null) {
+			return new Info(0, 0);
+		}
+		
+		Info leftInfo = process(x.left);
+		Info rightInfo = process(x.right);
+		
+		int height = Math.max(leftInfo.height, rightInfo.height) + 1;
+		int size = leftInfo.size + rightInfo.size + 1;
+		
+		return new Info(height, size);
+	}
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

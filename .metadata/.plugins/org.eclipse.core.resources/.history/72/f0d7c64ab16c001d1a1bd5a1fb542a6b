@@ -1,0 +1,29 @@
+package 二叉树;
+
+public class Code01_IsCST {
+	
+	
+	/**
+	 * 使用二叉树递归套路 判断 二叉树是否是完全二叉树
+	 * @param args
+	 */
+	
+	
+	public static class Info {
+		public boolean isFull;
+		public boolean isCBT;
+		public int height;
+		
+		public Info(boolean f, boolean c, int h) {
+			isFull = f;
+			isCBT = c;
+			height = h;
+		}
+	}
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

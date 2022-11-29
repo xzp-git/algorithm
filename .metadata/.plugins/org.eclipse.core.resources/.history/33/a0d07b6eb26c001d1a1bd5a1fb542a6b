@@ -1,0 +1,54 @@
+package 二叉树;
+
+import 二叉树.Code05_MaxSubBSTSize.Node;
+
+public class Code01_IsCST {
+	
+	
+	/**
+	 * 使用二叉树递归套路 判断 二叉树是否是完全二叉树
+	 * @param args
+	 */
+	public static class Node {
+		public int value;
+		public Node left;
+		public Node right;
+
+		public Node(int data) {
+			this.value = data;
+		}
+	}
+	
+	public static class Info {
+		public boolean isFull;
+		public boolean isCBT;
+		public int height;
+		
+		public Info(boolean f, boolean c, int h) {
+			isFull = f;
+			isCBT = c;
+			height = h;
+		}
+	}
+	
+	
+	
+	public static boolean isCST(Node head) {
+		
+	}
+	
+	public static Info process(Node x) {
+		
+		if(x == null) {
+			return new Info(true, true, 0);
+		}
+	}
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
