@@ -1,0 +1,50 @@
+package 二叉树;
+
+
+
+public class Code_MaxSubBSTHead {
+	
+	
+	public static class Node {
+		public int value;
+		public Node left;
+		public Node right;
+
+		public Node(int data) {
+			this.value = data;
+		}
+	}
+	
+	public static class Info{
+		public int maxSubBSTSize;
+		public int max;
+		public int min;
+		public int allSize;
+		public Node head;
+		
+		public Info(int subSize, int ma, int mi, int all, Node h) {
+			maxSubBSTSize = subSize;
+			max = ma;
+			min = mi;
+			allSize = all;
+			head = h;
+		}
+		
+	}
+	
+	
+	/*
+	 * 求一个二叉树的最大子二叉搜索树的头节点
+	 */
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -2,6 +2,7 @@
 
 import java.util.ArrayList;
 
+
 public class Code05_MaxSubBSTSize {
 	
 	
@@ -52,12 +53,14 @@ public class Code05_MaxSubBSTSize {
 		public int max;
 		public int min;
 		public int allSize;
+		public Node head;
 		
-		public Info(int m, int ma, int mi, int a) {
+		public Info(int m, int ma, int mi, int a, Node h) {
 			maxSubBSTSize = m;
 			max = ma;
 			min = mi;
 			allSize = a;
+			head = h;
 		}
 	}
 	
@@ -77,41 +80,51 @@ public class Code05_MaxSubBSTSize {
 		
 		int max = x.value;
 		int min = x.value;
-		int allSize = 1;
+		int leftAllSize = 0;
+		int rightAllSize = 0;
 		int p1 = -1;
 		int p2 = -1;
 		int p3 = -1;
-		
-		
 		if(leftInfo != null) {
 			max = Math.max(max, leftInfo.max);
 			min = Math.min(min, leftInfo.min);
-			allSize += leftInfo.allSize;
 			p1 = leftInfo.maxSubBSTSize;
+			leftAllSize = leftInfo.allSize;
 		}
 		if(rightInfo != null) {
 			max = Math.max(max, rightInfo.max);
 			min = Math.min(min, rightInfo.min);
-			allSize += rightInfo.allSize;
 			p2 = rightInfo.maxSubBSTSize;
+			rightAllSize = rightInfo.allSize;
 		}
+		int allSize = leftAllSize + rightAllSize + 1;
 		
-		boolean leftIsBST = leftInfo == null ? true: (leftInfo.allSize == leftInfo.maxSubBSTSize);
-		boolean rightIsBST = rightInfo == null ? true: (rightInfo.allSize == rightInfo.maxSubBSTSize);	
+		boolean leftIsBST = leftInfo != null ? leftInfo.allSize == leftInfo.maxSubBSTSize : true;
+		boolean rightIsBST = rightInfo != null ? rightInfo.allSize == rightInfo.maxSubBSTSize : true;
 		
 		if(leftIsBST && rightIsBST) {
-//			此处容易错误 会忘记 处理 null
-			boolean leftMaxLessX = leftInfo == null ? true : (leftInfo.max < x.value);
-			boolean rightMinMoreX = rightInfo == null ? true : (rightInfo.min > x.value);
+			boolean leftMaxLessX = leftInfo != null ? x.value > leftInfo.max : true;
+			boolean rightMinMoreX = rightInfo != null ? x.value <rightInfo.min : true;
+			
 			if(leftMaxLessX && rightMinMoreX) {
-//				此处容易错误 会忘记 处理 null
-				int leftSize = leftInfo == null ? 0 : leftInfo.allSize;
-				int rightSize = rightInfo == null ? 0 : rightInfo.allSize;
-				p3 = leftSize + rightSize + 1;
+				p3 = allSize;
 			}
-		}
+ 		}
+		
 		int maxSubBSTSize = Math.max(Math.max(p1, p2), p3);
-		return new Info(maxSubBSTSize, max, min, allSize);
+		
+		Node head = null;
+		if(leftInfo != null && p1 == maxSubBSTSize) {
+			head = leftInfo.head;
+		}
+		if(rightInfo != null && p2 == maxSubBSTSize) {
+			head = rightInfo.head;
+		}
+		if(p3 == maxSubBSTSize) {
+			head = x;
+		}
+		
+		return new Info(maxSubBSTSize, max, min, allSize, head);
 	}
 	
 	

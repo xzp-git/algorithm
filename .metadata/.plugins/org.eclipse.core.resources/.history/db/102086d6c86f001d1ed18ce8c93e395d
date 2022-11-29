@@ -1,0 +1,13 @@
+package 二叉树;
+
+public class Code_lowestAncestor {
+	
+	
+	// 寻找 二叉树 x 中 a节点 与 b节点的 最低公共祖先
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

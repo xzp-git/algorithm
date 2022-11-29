@@ -1,0 +1,20 @@
+package 二叉树;
+
+public class Code_MaxSubBSTHead {
+	
+	
+	/*
+	 * 求一个二叉树的最大子二叉搜索树的头节点
+	 */
+	
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

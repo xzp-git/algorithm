@@ -1,0 +1,87 @@
+package 二叉树;
+
+
+
+public class Code_MaxSubBSTHead {
+	
+	
+	public static class Node {
+		public int value;
+		public Node left;
+		public Node right;
+
+		public Node(int data) {
+			this.value = data;
+		}
+	}
+	
+	public static class Info{
+		public int maxSubBSTSize;
+		public int max;
+		public int min;
+		public int allSize;
+		public Node head;
+		
+		public Info(int subSize, int ma, int mi, int all, Node h) {
+			maxSubBSTSize = subSize;
+			max = ma;
+			min = mi;
+			allSize = all;
+			head = h;
+		}
+		
+	}
+	
+	
+	/*
+	 * 求一个二叉树的最大子二叉搜索树的头节点
+	 */
+	
+	public static Node maxSubBSTHead(Node head) {
+		
+	}
+	
+	public static Info process(Node x) {
+		if(x == null) {
+			return null;
+		}
+		
+		Info leftInfo = process(x.left);
+		Info rightInfo = process(x.right);
+		
+		int max = x.value;
+		int min = x.value;
+		int leftAllSize = 0;
+		int rightAllSize = 0;
+		int p1 = -1;
+		int p2 = -1;
+		int p3 = -1;
+		if(leftInfo != null) {
+			max = Math.max(max, leftInfo.max);
+			min = Math.min(min, leftInfo.min);
+			p1 = leftInfo.maxSubBSTSize;
+			leftAllSize = leftInfo.allSize;
+		}
+		if(rightInfo != null) {
+			max = Math.max(max, rightInfo.max);
+			min = Math.min(min, rightInfo.min);
+			p2 = rightInfo.maxSubBSTSize;
+			rightAllSize = rightInfo.allSize;
+		}
+		
+		
+		
+		
+		return new Info()
+	}
+	
+	
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

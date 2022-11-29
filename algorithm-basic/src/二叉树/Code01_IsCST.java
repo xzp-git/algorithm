@@ -1,6 +1,5 @@
 package 二叉树;
 
-import 二叉树.Code05_MaxSubBSTSize.Node;
 
 public class Code01_IsCST {
 	

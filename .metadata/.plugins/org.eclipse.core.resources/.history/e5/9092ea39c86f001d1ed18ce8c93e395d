@@ -1,0 +1,10 @@
+package 二叉树;
+
+public class Code_lowestAncestor {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

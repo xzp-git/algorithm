@@ -1,0 +1,29 @@
+package 二叉树;
+
+public class Code_lowestAncestor {
+	
+	
+	// 寻找 二叉树 x 中 a节点 与 b节点的 最低公共祖先
+	
+	
+	/**
+	 *  分析 
+	 *  x 不是 祖先  
+	 *  要信息 左边 发现 的祖先? 右边发现 的祖先?
+	 *  x是祖先
+	 *  要信息 左边发现 A  右边发现 B 或者 x == B
+	 *  	  左边发现B  右边发现A 或者 x == A
+	 *  
+	 *  整合信息
+	 *   1. found A
+	 *   2. found B
+	 *   3. ancestor 
+	 * 
+	 */
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

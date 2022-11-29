@@ -1,0 +1,174 @@
+package 二叉树;
+
+import java.util.ArrayList;
+
+public class Code_MaxSubBSTHead {
+	
+	
+	public static int getBSTSize(Node head) {
+		if (head == null) {
+			return 0;
+		}
+		ArrayList<Node> arr = new ArrayList<>();
+		in(head, arr);
+		for (int i = 1; i < arr.size(); i++) {
+			if (arr.get(i).value <= arr.get(i - 1).value) {
+				return 0;
+			}
+		}
+		return arr.size();
+	}
+
+	public static void in(Node head, ArrayList<Node> arr) {
+		if (head == null) {
+			return;
+		}
+		in(head.left, arr);
+		arr.add(head);
+		in(head.right, arr);
+	}
+
+	public static Node maxSubBSTHead1(Node head) {
+		if (head == null) {
+			return null;
+		}
+		if (getBSTSize(head) != 0) {
+			return head;
+		}
+		Node leftAns = maxSubBSTHead1(head.left);
+		Node rightAns = maxSubBSTHead1(head.right);
+		return getBSTSize(leftAns) >= getBSTSize(rightAns) ? leftAns : rightAns;
+	}
+	
+	
+	public static class Node {
+		public int value;
+		public Node left;
+		public Node right;
+
+		public Node(int data) {
+			this.value = data;
+		}
+	}
+	
+	public static class Info{
+		public int maxSubBSTSize;
+		public int max;
+		public int min;
+		public int allSize;
+		public Node head;
+		
+		public Info(int subSize, int ma, int mi, int all, Node h) {
+			maxSubBSTSize = subSize;
+			max = ma;
+			min = mi;
+			allSize = all;
+			head = h;
+		}
+		
+	}
+	
+	
+	/*
+	 * 求一个二叉树的最大子二叉搜索树的头节点
+	 */
+	
+	public static Node maxSubBSTHead(Node head) {
+		if(head == null) {
+			return null;
+		}
+		return process(head).head;
+	}
+	
+	public static Info process(Node x) {
+		if(x == null) {
+			return null;
+		}
+		
+		Info leftInfo = process(x.left);
+		Info rightInfo = process(x.right);
+		
+		int max = x.value;
+		int min = x.value;
+		int leftAllSize = 0;
+		int rightAllSize = 0;
+		int p1 = -1;
+		int p2 = -1;
+		int p3 = -1;
+		if(leftInfo != null) {
+			max = Math.max(max, leftInfo.max);
+			min = Math.min(min, leftInfo.min);
+			p1 = leftInfo.maxSubBSTSize;
+			leftAllSize = leftInfo.allSize;
+		}
+		if(rightInfo != null) {
+			max = Math.max(max, rightInfo.max);
+			min = Math.min(min, rightInfo.min);
+			p2 = rightInfo.maxSubBSTSize;
+			rightAllSize = rightInfo.allSize;
+		}
+		int allSize = leftAllSize + rightAllSize + 1;
+		
+		boolean leftIsBST = leftInfo != null ? leftInfo.allSize == leftInfo.maxSubBSTSize : true;
+		boolean rightIsBST = rightInfo != null ? rightInfo.allSize == rightInfo.maxSubBSTSize : true;
+		
+		if(leftIsBST && rightIsBST) {
+			boolean leftMaxLessX = leftInfo != null ? x.value > leftInfo.max : true;
+			boolean rightMinMoreX = rightInfo != null ? x.value <rightInfo.min : true;
+			
+			if(leftMaxLessX && rightMinMoreX) {
+				p3 = allSize;
+			}
+ 		}
+		
+		int maxSubBSTSize = Math.max(Math.max(p1, p2), p3);
+		
+		Node head = null;
+		
+		if(rightInfo != null && p2 == maxSubBSTSize) {
+			head = rightInfo.head;
+		}
+		if(leftInfo != null && p1 == maxSubBSTSize) {
+			head = leftInfo.head;
+		}
+		if(p3 == maxSubBSTSize) {
+			head = x;
+		}
+		
+		return new Info(maxSubBSTSize, max, min, allSize, head);
+	}
+	
+	
+	
+	
+
+	// for test
+		public static Node generateRandomBST(int maxLevel, int maxValue) {
+			return generate(1, maxLevel, maxValue);
+		}
+
+		// for test
+		public static Node generate(int level, int maxLevel, int maxValue) {
+			if (level > maxLevel || Math.random() < 0.5) {
+				return null;
+			}
+			Node head = new Node((int) (Math.random() * maxValue));
+			head.left = generate(level + 1, maxLevel, maxValue);
+			head.right = generate(level + 1, maxLevel, maxValue);
+			return head;
+		}
+
+		public static void main(String[] args) {
+			int maxLevel = 4;
+			int maxValue = 100;
+			int testTimes = 1000000;
+			for (int i = 0; i < testTimes; i++) {
+				Node head = generateRandomBST(maxLevel, maxValue);
+				if (maxSubBSTHead1(head) != maxSubBSTHead(head)) {
+					System.out.println("Oops!");
+				}
+			}
+			System.out.println("finish!");
+		}
+
+}
