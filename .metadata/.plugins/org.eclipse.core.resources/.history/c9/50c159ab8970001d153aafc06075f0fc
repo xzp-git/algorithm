@@ -1,0 +1,48 @@
+package 二叉树;
+
+import java.util.List;
+import java.util.ArrayList;
+
+public class Code_MaxHappy {
+	
+	
+	
+	/*
+	 * 
+	 * 多叉树计算快乐值
+	 *  邀请了 上级就不能邀请他的下级
+	 *  
+	 */
+	
+	public static class Employee{
+		public int happy;
+		public List<Employee> nexts;
+		
+		public Employee(int h) {
+			happy = h;
+			nexts = new ArrayList<>();
+		}
+	}
+	
+	public static int maxHappy(Employee boss) {
+		
+	}
+	
+	public static class Info{
+		public int no;
+		public int yes;
+		
+		public Info(int n, int y) {
+			no = n;
+			yes = y;
+		}
+	}
+	
+	
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
